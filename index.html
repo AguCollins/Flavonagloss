@@ -855,11 +855,131 @@
             padding: 6px 14px;
         }
 
-        @media(max-width: 991px){
-            .hero-bg-img{ width:100%; opacity:0.25; clip-path:none; }
-            .hero-content{ max-width:100%; text-align:center; }
-            .hero-eyebrow{ justify-content:center; }
-            section{ padding: 70px 0; }
+        /* ===== RESPONSIVE FIXES ===== */
+
+        /* Prevent ANY horizontal overflow globally */
+        html, body {
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+
+        /* Tablet & below */
+        @media (max-width: 991px) {
+            /* Hero */
+            #heroCarousel {
+                width: 100%;
+                opacity: 0.3;
+                clip-path: none;
+            }
+            .hero-bg-img { clip-path: none; }
+            .hero-content {
+                max-width: 100%;
+                text-align: center;
+                padding: 0 16px;
+            }
+            .hero-eyebrow { justify-content: center; }
+            .hero p.lead-text { max-width: 100%; margin-left: auto; margin-right: auto; }
+            .hero-content .d-flex { justify-content: center; }
+
+            /* Sections */
+            section { padding: 70px 0; }
+            .intro-strip { padding: 50px 0; }
+            .intro-strip p { font-size: 1.35rem; }
+
+            /* Story teaser — the key fix: pseudo-element bleeds off screen */
+            .story-section { overflow: hidden; }
+            .story-img { height: 380px; }
+            .story-img::before {
+                right: 0;        /* was -18px — this was causing horizontal scroll */
+                bottom: 0;
+                top: 10px;
+                left: 10px;
+            }
+            .story-quote { font-size: 1.3rem; }
+
+            /* Gallery */
+            .gallery-item { height: 260px; }
+
+            /* Products */
+            .product-img-wrap { height: 280px; }
+
+            /* Newsletter */
+            .newsletter-form {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 12px;
+                border-bottom: none;
+                padding-bottom: 0;
+            }
+            .newsletter-form input {
+                border-bottom: 1px solid rgba(250,244,236,0.4);
+                padding-bottom: 10px;
+            }
+            .newsletter-form button { text-align: center; padding: 10px 0; }
+
+            /* Footer */
+            .footer-bottom {
+                flex-direction: column;
+                gap: 8px;
+                text-align: center;
+            }
+
+            /* Navbar mobile menu background */
+            .navbar-collapse.show,
+            .navbar-collapse.collapsing {
+                background: rgba(250,244,236,0.98);
+                padding: 16px 20px;
+                margin-top: 10px;
+            }
+        }
+
+        /* Mobile only */
+        @media (max-width: 767px) {
+            /* Hero */
+            .hero { min-height: 100svh; }
+            .hero h1 { font-size: 2.6rem; }
+            .scroll-cue { display: none; }
+
+            /* Sections */
+            section { padding: 56px 0; }
+            .intro-strip { padding: 40px 0; }
+            .intro-strip p { font-size: 1.15rem; }
+            .section-title { font-size: 2rem; }
+
+            /* Story */
+            .story-img { height: 280px; margin-bottom: 40px; }
+            .story-img::before { display: none; } /* hide decorative border on small screens */
+            .story-quote { font-size: 1.15rem; }
+
+            /* Gallery */
+            .gallery-item { height: 220px; }
+
+            /* Products */
+            .product-img-wrap { height: 240px; }
+        }
+
+        /* Small phones */
+        @media (max-width: 576px) {
+            .btn-luxury,
+            .btn-luxury-outline {
+                padding: 12px 24px;
+                font-size: 0.75rem;
+                width: 100%;
+                text-align: center;
+                display: block;
+            }
+            .hero-content .d-flex {
+                flex-direction: column;
+                gap: 12px !important;
+            }
+            .hero h1 { font-size: 2.2rem; }
+
+            /* Testimonials */
+            .testimonial-card { padding: 28px 22px; }
+
+            /* Footer */
+            .footer-bottom { font-size: 0.76rem; }
+            footer h6 { margin-top: 6px; }
         }
     </style>
 </head>
